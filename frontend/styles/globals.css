@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+
+
+
+
+/* styles/globals.css */
+
+/* body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.text-purple-900 {
+  color: #3b0c59;
+}
+
+.bg-purple-900 {
+  background-color: #3b0c59;
+}
+
+.bg-purple-500 {
+  background-color: #7d0d6a;
+}
+
+.bg-purple-200 {
+  background-color: #e9d8fd;
+}
+
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.from-blue-500 {
+  --tw-gradient-from: #3b82f6;
+}
+
+.to-pink-500 {
+  --tw-gradient-to: #ec4899;
+}
+
+.hover\:from-blue-600:hover {
+  --tw-gradient-from: #2563eb;
+}
+
+.hover\:to-pink-600:hover {
+  --tw-gradient-to: #db2777;
+} */
+
+h1{
+  font-size: 10px;
+}
