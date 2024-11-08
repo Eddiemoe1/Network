@@ -37,9 +37,9 @@ const MissionSection: React.FC = () => {
         }}>
           {/* Each feature item styled consistently */}
           {[ 
-            { imgSrc: 'path_to_image_1', text: 'Navigate through your network with ease' },
-            { imgSrc: 'path_to_image_2', text: 'Create collections & earn rewards' },
-            { imgSrc: 'path_to_image_3', text: 'Chase limited edition Msow Choir' }
+            { imgSrc: '/frontend/public/images/background/network2.jpg', text: 'Navigate through your network with ease' },
+            { imgSrc: '/frontend/public/images/background/backg.webp', text: 'register and be a member today' },
+            { imgSrc: '/frontend/public/images/background/datanet.png', text: 'Chase the flow of unlimited network' }
           ].map((feature, index) => (
             <div key={index} style={{
               display: 'flex',
