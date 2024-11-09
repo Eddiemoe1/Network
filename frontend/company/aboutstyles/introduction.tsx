@@ -34,7 +34,7 @@ const IntroPage = () => {
                     </div>
 
                     {/* Right Side: Features List */}
-                    <div className="flex-1 space-y-12">
+                    <div className="flex-3 space-y-12">
                         {[
                             {
                                 number: "01",

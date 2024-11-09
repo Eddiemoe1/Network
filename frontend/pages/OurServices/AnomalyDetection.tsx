@@ -13,7 +13,7 @@ const AnomalyDetection: React.FC = () => {
           Anomaly detection is a critical component of our AI self-healing network. It helps identify unusual patterns and behaviors in real-time, ensuring that potential issues are addressed before they escalate.
         </p>
         <h2 className="text-2xl font-semibold text-blue-500 mb-2">
-          How It Works
+         <b> How It Works</b>
         </h2>
         <ul className="list-disc list-inside mb-4">
           <li className="text-white mb-2">

@@ -18,9 +18,7 @@ const CallToAction: React.FC = () => {
       >
         Get Started
       </button>
-      <button className="bg-transparent border border-blue-600 text-blue-600 py-2 px-4 rounded-lg ml-4">
-        Request a Demo
-      </button>
+     
     </section>
   );
 };

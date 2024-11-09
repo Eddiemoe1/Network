@@ -105,6 +105,7 @@ const Navbar: React.FC = () => {
             )}
           </div>
 
+
           <div
             className="relative group"
             onMouseEnter={() => handleMouseEnter('pages')}
@@ -157,6 +158,7 @@ const Navbar: React.FC = () => {
             </svg>
           </button>
         </div>
+       
       </div>
       {open && (
         <div className="md:hidden">
