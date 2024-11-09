@@ -77,7 +77,7 @@ const TermsAndConditions: React.FC = () => {
       </section>
 
       <div className="text-center mt-8">
-        <p className="text-sm text-gray-400">Last Updated: 02/11/2024</p>
+        <p className="text-sm text-gray-400"></p>
       </div>
     </div>
   );

@@ -12,16 +12,16 @@ const MissionSection: React.FC = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         borderRadius: '8px',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)', // Added shadow for depth
-        margin: '0 20px' // Margin added for spacing
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)',
+        margin: '0 20px'
       }}>
         <div style={{
           flex: 0.5,
           color: 'white',
           padding: '20px',
-          backgroundColor: 'rgba(19, 15, 64, 0.8)', // Slightly darker for contrast
+          backgroundColor: 'rgba(19, 15, 64, 0.8)',
           borderRadius: '8px',
-          boxShadow: '0 2px 10px rgba(0, 0, 0, 0.3)', // Shadow for depth
+          boxShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
         }}>
           <h2 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Our Mission</h2>
           <p style={{ fontSize: '1.2rem' }}>
@@ -36,10 +36,10 @@ const MissionSection: React.FC = () => {
           flex: 1,
         }}>
           {/* Each feature item styled consistently */}
-          {[ 
-            { imgSrc: '/frontend/public/images/background/network2.jpg', text: 'Navigate through your network with ease' },
-            { imgSrc: '/frontend/public/images/background/backg.webp', text: 'register and be a member today' },
-            { imgSrc: '/frontend/public/images/background/datanet.png', text: 'Chase the flow of unlimited network' }
+          {[
+            { imgSrc: '/images/background/navigation.webp', text: 'Navigate through your network with ease' },
+            { imgSrc: '/images/background/registration.webp', text: 'Register and be a member today' },
+            { imgSrc: '/images/background/network-flow.png', text: 'Chase the flow of unlimited network' }
           ].map((feature, index) => (
             <div key={index} style={{
               display: 'flex',
@@ -65,3 +65,4 @@ const MissionSection: React.FC = () => {
 }
 
 export default MissionSection;
+

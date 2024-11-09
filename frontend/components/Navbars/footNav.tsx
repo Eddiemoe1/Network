@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
       <div className="border-t border-gray-600 mt-8 py-4 text-center h-30">
-        <p className="text-white">© 2024. All rights reserved by TechStack</p>
+        <p className="text-white">© 2024. All rights reserved </p>
       </div>
 
       <a href="#top" className="absolute bottom-8 right-8 bg-pink-600 p-3 rounded-full shadow-lg hover:bg-pink-500">
@@ -58,10 +58,10 @@ const Footer: React.FC = () => {
 };
 
 const socialIcons = [
-  { href: 'https://twitter.com', src: '/icons/twitter.png', alt: 'Twitter' },
-  { href: 'https://facebook.com', src: '/icons/fb.png', alt: 'Facebook' },
+  { href: 'https://x.com/NyambaneEdinah?s=09', src: '/icons/X.webp', alt: 'X' },
+  { href: 'https://www.facebook.com/share/1C8JCFy5xE/', src: '/icons/fb.png', alt: 'Facebook' },
   { href: 'https://t.me/Moeednah', src: '/icons/telegram.png', alt: 'Telegram' },
-  { href: 'https://www.youtube.com/@MsowChaplaincyetmmust', src: '/icons/youtube.png', alt: 'YouTube' },
+  { href: 'https://youtube.com/@edinahnyambane?feature=shared', src: '/icons/youtube.png', alt: 'YouTube' },
   { href: 'https://tiktok.com', src: '/icons/tiktok.png', alt: 'TikTok' },
   { href: 'https://discord.com', src: '/icons/discord.png', alt: 'Discord' },
 ];
