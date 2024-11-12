@@ -1,0 +1,25 @@
+# libraries for machine learning
+scikit-learn
+pandas
+numpy
+matplotlib
+seaborn
+joblib  # saving and loading models
+
+# Data processing and manipulation
+scipy
+dvc  # For version control of data
+
+# Flask for API deployment
+Flask
+flask-cors  # To allow cross-origin requests from the Next.js app
+
+# For reading and writing configuration
+PyYAML
+
+# For continuous data ingestion (streaming)
+kafka-python  # If Kafka  is used for data streaming
+requests  # For making HTTP requests ( for consuming external data sources)
+
+# For model persistence
+# tensorflow  # For deep learning (or just scikit-learn for Isolation Forest)
