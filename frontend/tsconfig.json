@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/profile/dashboard.js"
-  ],
+, "pages/dashboard.tsx"  ],
   "exclude": [
     "node_modules"
   ]
