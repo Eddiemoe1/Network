@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
 # Load the saved model
-model = joblib.load(r"C:\Users\rutto\OneDrive\Desktop\NetML\Network\anomaly_detection\experiment\anomaly_detection_model.joblib")
+model = joblib.load(r"C:\Users\Moraa\Desktop\network2\Network\anomaly_detection\experiment\anomaly_detection_model.joblib")
 
 # Define the FastAPI app
 app = FastAPI()
