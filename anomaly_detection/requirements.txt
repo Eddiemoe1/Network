@@ -21,5 +21,9 @@ PyYAML
 kafka-python  # If Kafka  is used for data streaming
 requests  # For making HTTP requests ( for consuming external data sources)
 
+fastapi
+uvicorn
+
+
 # For model persistence
 # tensorflow  # For deep learning (or just scikit-learn for Isolation Forest)

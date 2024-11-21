@@ -14,17 +14,29 @@ export default function Dashboard() {
 
     try {
       const data = {
+
+        packet_count: 9200, // Abnormal packet count
+        response_time_ms: 2400, // High response time
+        throughput_mbps: 1.9, // Low throughput
+        packet_loss_percent: 20.0, // High packet loss
+        hour: new Date().getHours(), // Use the current hour for prediction
+
         packet_count: 500,
         response_time_ms: 120.5,
         throughput_mbps: 50.0,
         packet_loss_percent: 0.5,
         hour: new Date().getHours(),
+
       };
 
-      const response = await axios.post(`${API_URL}/predict`, data);
+      const response = await axios.post('http://127.0.0.1:8000/predict', data);
 
       if (response.status === 200) {
+
+        setPrediction(response.data); // Set prediction result
+
         setPrediction(response.data.prediction); // Update prediction
+
       } else {
         setError('Failed to fetch prediction. Please try again.');
       }
@@ -57,18 +69,68 @@ export default function Dashboard() {
       {/* Error state */}
       {error && <p style={styles.error}>{error}</p>}
 
-      {/* Prediction result */}
-      {!loading && !error && (
+
+      {!loading && !error && prediction && (
+        <table style={styles.table}>
+          <thead>
+            <tr>
+              <th style={styles.tableHeader}>Metric</th>
+              <th style={styles.tableHeader}>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style={styles.tableCell}>Packet Count</td>
+              <td style={styles.tableCell}>{9200}</td>
+            </tr>
+            <tr>
+              <td style={styles.tableCell}>Response Time (ms)</td>
+              <td style={styles.tableCell}>{2400}</td>
+            </tr>
+            <tr>
+              <td style={styles.tableCell}>Throughput (Mbps)</td>
+              <td style={styles.tableCell}>{1.9}</td>
+            </tr>
+            <tr>
+              <td style={styles.tableCell}>Packet Loss (%)</td>
+              <td style={styles.tableCell}>{20.0}</td>
+            </tr>
+            <tr>
+              <td style={styles.tableCell}>Hour</td>
+              <td style={styles.tableCell}>{new Date().getHours()}</td>
+            </tr>
+            <tr>
+        {!loading && !error && (
+          <>
+            <td style={styles.resultHeader}>Prediction Result:</td>
+            <td style={{ ...styles.predictionText, color: 'green' }}>
+              {prediction ? prediction : 'No prediction available yet.'}
+            </td>
+          </>
+        )}
+      </tr>
+          </tbody>
+        </table>
+      
+      )
+      }
+
+      
+
+   
+
+     {/* {!loading && !error && (
         <div style={styles.resultContainer}>
           <h2 style={styles.resultHeader}>Prediction Result:</h2>
           <p style={styles.predictionText}>
             {prediction ? prediction : 'No prediction available yet.'}
           </p>
         </div>
-      )}
+
+      )} */} 
 
       <footer style={styles.footer}>
-        <p>Real-time predictions powered by FastAPI. Updates every 5 seconds.</p>
+        <p>Real-time predictions powered by FastAPI. Updates every 5 seconds .</p>
       </footer>
     </div>
   );
@@ -82,10 +144,11 @@ const styles = {
     padding: '20px',
     fontFamily: 'Arial, sans-serif',
     textAlign: 'center',
+
   },
   header: {
     fontSize: '2rem',
-    color: '#333',
+    color: 'blue', // Change header color to blue
   },
   loading: {
     fontSize: '1.2rem',
@@ -95,20 +158,36 @@ const styles = {
     fontSize: '1.2rem',
     color: '#f44336',
   },
-  resultContainer: {
+  table: {
+    width: '100%',
     marginTop: '30px',
-    padding: '20px',
-    border: '1px solid #ddd',
-    borderRadius: '8px',
-    backgroundColor: '#f9f9f9',
+    borderCollapse: 'collapse',
+    border: '2px solid black', // Add black border around the entire table
   },
   resultHeader: {
-    fontSize: '1.5rem',
-    color: '#333',
+    fontSize: '18px',
+    fontWeight: 'bold',
   },
+  predictionText: {
+    fontSize: '16px',
+  },
+  tableHeader: {
+    backgroundColor: '#333',
+    color: '#fff',
+    padding: '10px',
+    textAlign: 'left',
+    border: '2px solid black', // Add black border to headers
+  },
+
+  tableCell: {
+    border: '2px solid black', // Add thick black border to cells
+    padding: '10px',
+    textAlign: 'left',
+
   predictionText: {
     fontSize: '1.8rem',
     color: prediction => (prediction === 'Anomaly' ? '#f44336' : '#4caf50'), // Conditional styling
+
   },
   footer: {
     marginTop: '50px',
@@ -116,4 +195,5 @@ const styles = {
     color: '#777',
     textAlign: 'center',
   },
+  }
 };
