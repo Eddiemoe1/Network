@@ -5,17 +5,17 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
 # Load the saved model
-model = joblib.load(r"C:\Users\rutto\OneDrive\Desktop\NetML\Network\anomaly_detection\experiment\anomaly_detection_model.joblib")
+model = joblib.load(r"C:\Users\Moraa\Desktop\network2\Network\anomaly_detection\experiment\anomaly_detection_model.joblib")
 
 # Define the FastAPI app
 app = FastAPI()
 # Allow CORS for all origins (or specify your frontend's URL)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=["*"],  # Adjust origins for production
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods (GET, POST, etc.)
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Root endpoint
