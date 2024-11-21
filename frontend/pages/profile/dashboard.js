@@ -21,11 +21,11 @@ export default function Dashboard() {
         packet_loss_percent: 20.0, // High packet loss
         hour: new Date().getHours(), // Use the current hour for prediction
 
-        packet_count: 500,
-        response_time_ms: 120.5,
-        throughput_mbps: 50.0,
-        packet_loss_percent: 0.5,
-        hour: new Date().getHours(),
+        // packet_count: 500,
+        // response_time_ms: 120.5,
+        // throughput_mbps: 50.0,
+        // packet_loss_percent: 0.5,
+        // hour: new Date().getHours(),
 
       };
 
