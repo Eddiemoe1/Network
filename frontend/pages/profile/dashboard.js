@@ -111,9 +111,7 @@ const styles = {
   },
   header: {
     fontSize: '2rem',
-    background: 'linear-gradient(to right, blue, pink)', // Gradient for text
-    WebkitBackgroundClip: 'text', // Clip gradient to text
-    color: 'transparent', // Hide background color
+    color: 'blue', // Change header color to blue
   },
   loading: {
     fontSize: '1.5rem',
