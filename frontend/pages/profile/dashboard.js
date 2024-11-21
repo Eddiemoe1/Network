@@ -106,7 +106,11 @@ export default function Dashboard() {
           </tbody>
         </table>
 
+
       {/* Prediction result */}
+
+   
+
       {!loading && !error && (
         <div style={styles.resultContainer}>
           <h2 style={styles.resultHeader}>Prediction Result:</h2>
