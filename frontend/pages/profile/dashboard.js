@@ -118,7 +118,7 @@ export default function Dashboard() {
       )}
 
       <footer style={styles.footer}>
-        <p>Real-time predictions powered by FastAPI. Updates every 5 seconds.</p>
+        <p>Real-time predictions powered by FastAPI. Updates every 5 seconds in the sysstem.</p>
       </footer>
     </div>
   );
