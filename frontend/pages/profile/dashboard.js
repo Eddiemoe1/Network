@@ -29,7 +29,7 @@ export default function Dashboard() {
 
       };
 
-      const response = await axios.post(`${API_URL}/predict`, data);
+      const response = await axios.post('http://127.0.0.1:8000/predict', data);
 
       if (response.status === 200) {
 
@@ -100,18 +100,26 @@ export default function Dashboard() {
               <td style={styles.tableCell}>{new Date().getHours()}</td>
             </tr>
             <tr>
-              <td style={styles.tableCell}>Prediction Result</td>
-              <td style={styles.tableCell}>{prediction.prediction}</td>
-            </tr>
+        {!loading && !error && (
+          <>
+            <td style={styles.resultHeader}>Prediction Result:</td>
+            <td style={{ ...styles.predictionText, color: 'green' }}>
+              {prediction ? prediction : 'No prediction available yet.'}
+            </td>
+          </>
+        )}
+      </tr>
           </tbody>
         </table>
+      
+      )
+      }
 
-
-      {/* Prediction result */}
+      
 
    
 
-      {!loading && !error && (
+     {/* {!loading && !error && (
         <div style={styles.resultContainer}>
           <h2 style={styles.resultHeader}>Prediction Result:</h2>
           <p style={styles.predictionText}>
@@ -119,10 +127,10 @@ export default function Dashboard() {
           </p>
         </div>
 
-      )}
+      )} */} 
 
       <footer style={styles.footer}>
-        <p>Real-time predictions powered by FastAPI. Updates every 5 seconds in the sysstem.</p>
+        <p>Real-time predictions powered by FastAPI. Updates every 5 seconds .</p>
       </footer>
     </div>
   );
@@ -136,6 +144,7 @@ const styles = {
     padding: '20px',
     fontFamily: 'Arial, sans-serif',
     textAlign: 'center',
+
   },
   header: {
     fontSize: '2rem',
@@ -154,6 +163,13 @@ const styles = {
     marginTop: '30px',
     borderCollapse: 'collapse',
     border: '2px solid black', // Add black border around the entire table
+  },
+  resultHeader: {
+    fontSize: '18px',
+    fontWeight: 'bold',
+  },
+  predictionText: {
+    fontSize: '16px',
   },
   tableHeader: {
     backgroundColor: '#333',
@@ -179,4 +195,5 @@ const styles = {
     color: '#777',
     textAlign: 'center',
   },
+  }
 };
