@@ -106,7 +106,11 @@ export default function Dashboard() {
           </tbody>
         </table>
 
+
+      {/* Prediction result */}
+
    
+
       {!loading && !error && (
         <div style={styles.resultContainer}>
           <h2 style={styles.resultHeader}>Prediction Result:</h2>
@@ -118,7 +122,7 @@ export default function Dashboard() {
       )}
 
       <footer style={styles.footer}>
-        <p>Real-time predictions powered by FastAPI. Updates every 5 seconds.</p>
+        <p>Real-time predictions powered by FastAPI. Updates every 5 seconds in the sysstem.</p>
       </footer>
     </div>
   );
