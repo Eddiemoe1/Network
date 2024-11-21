@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function Dashboard() {
-  const [prediction, setPrediction] = useState(null); // State to store the prediction result
-  const [loading, setLoading] = useState(false); // State to show loading indicator
-  const [error, setError] = useState(null); // State to store any error message
+  const [prediction, setPrediction] = useState(null); // Prediction result
+  const [loading, setLoading] = useState(false); // Loading state
+  const [error, setError] = useState(null); // Error message
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000'; // API URL with fallback
 
   // Function to fetch prediction data from FastAPI
   const fetchPrediction = async () => {
     setLoading(true);
-    setError(null); // Reset any previous errors
+    setError(null);
 
     try {
-      // Simulated network traffic data for prediction
       const data = {
         packet_count: 9200, // Abnormal packet count
         response_time_ms: 2400, // High response time
@@ -21,41 +21,43 @@ export default function Dashboard() {
         hour: new Date().getHours(), // Use the current hour for prediction
       };
 
-      // Send POST request to FastAPI /predict endpoint
-      const response = await axios.post('http://127.0.0.1:8000/predict', data);
+      const response = await axios.post(`${API_URL}/predict`, data);
 
-      // Handle successful response
       if (response.status === 200) {
-        setPrediction(response.data); // Set prediction result
+        setPrediction(response.data.prediction); // Update prediction
       } else {
-        setError('Failed to fetch prediction');
+        setError('Failed to fetch prediction. Please try again.');
       }
     } catch (err) {
-      // Handle any errors
-      setError(`Error: ${err.message}`);
+      const errorMsg = err.response?.data?.message || 'An error occurred. Check your network or server.';
+      setError(errorMsg); // Handle errors gracefully
+    } finally {
+      setLoading(false); // Always stop the loading state
     }
-
-    setLoading(false); // Stop the loading state
   };
 
-  // Polling: fetch prediction every 5 seconds
+  // Use effect for polling the FastAPI endpoint every 5 seconds
   useEffect(() => {
+    fetchPrediction(); // Initial fetch
+
     const interval = setInterval(() => {
       fetchPrediction();
-    }, 5000); // 5 seconds interval for real-time fetching
+    }, 5000);
 
-    // Cleanup interval on component unmount
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); // Cleanup on component unmount
   }, []);
 
   return (
     <div style={styles.container}>
       <h1 style={styles.header}>Anomaly Detection Dashboard</h1>
 
-      {loading && <p style={styles.loading}>Loading prediction...</p>}
+      {/* Loading state */}
+      {loading && <p style={styles.loading}>Fetching prediction...</p>}
 
+      {/* Error state */}
       {error && <p style={styles.error}>{error}</p>}
 
+      {/* Prediction and Metrics */}
       {!loading && !error && prediction && (
         <table style={styles.table}>
           <thead>
@@ -67,19 +69,19 @@ export default function Dashboard() {
           <tbody>
             <tr>
               <td style={styles.tableCell}>Packet Count</td>
-              <td style={styles.tableCell}>{9200}</td>
+              <td style={styles.tableCell}>9200</td>
             </tr>
             <tr>
               <td style={styles.tableCell}>Response Time (ms)</td>
-              <td style={styles.tableCell}>{2400}</td>
+              <td style={styles.tableCell}>2400</td>
             </tr>
             <tr>
               <td style={styles.tableCell}>Throughput (Mbps)</td>
-              <td style={styles.tableCell}>{1.9}</td>
+              <td style={styles.tableCell}>1.9</td>
             </tr>
             <tr>
               <td style={styles.tableCell}>Packet Loss (%)</td>
-              <td style={styles.tableCell}>{20.0}</td>
+              <td style={styles.tableCell}>20.0</td>
             </tr>
             <tr>
               <td style={styles.tableCell}>Hour</td>
@@ -87,20 +89,27 @@ export default function Dashboard() {
             </tr>
             <tr>
               <td style={styles.tableCell}>Prediction Result</td>
-              <td style={styles.tableCell}>{prediction.prediction}</td>
+              <td
+                style={{
+                  ...styles.tableCell,
+                  color: prediction === 'Anomaly' ? '#f44336' : '#4caf50', // Conditional color
+                }}
+              >
+                {prediction}
+              </td>
             </tr>
           </tbody>
         </table>
       )}
 
       <footer style={styles.footer}>
-        <p>Real-time predictions from FastAPI. Refreshes every 5 seconds.</p>
+        <p>Real-time predictions powered by FastAPI. Updates every 5 seconds.</p>
       </footer>
     </div>
   );
 }
 
-// Simple inline styles for the dashboard
+// Inline styles for simple UI adjustments
 const styles = {
   container: {
     maxWidth: '800px',
@@ -111,31 +120,31 @@ const styles = {
   },
   header: {
     fontSize: '2rem',
-    color: 'blue', // Change header color to blue
+    color: 'blue',
   },
   loading: {
-    fontSize: '1.5rem',
-    color: '#ff9800',
+    fontSize: '1.2rem',
+    color: '#007bff',
   },
   error: {
-    fontSize: '1.5rem',
+    fontSize: '1.2rem',
     color: '#f44336',
   },
   table: {
     width: '100%',
     marginTop: '30px',
     borderCollapse: 'collapse',
-    border: '2px solid black', // Add black border around the entire table
+    border: '2px solid black',
   },
   tableHeader: {
     backgroundColor: '#333',
     color: '#fff',
     padding: '10px',
     textAlign: 'left',
-    border: '2px solid black', // Add black border to headers
+    border: '2px solid black',
   },
   tableCell: {
-    border: '2px solid black', // Add thick black border to cells
+    border: '2px solid black',
     padding: '10px',
     textAlign: 'left',
   },
