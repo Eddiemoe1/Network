@@ -1,4 +1,4 @@
-# real_time_predictor.py
+
 import requests
 import time
 from datetime import datetime
@@ -35,12 +35,12 @@ def send_data_to_api():
     except Exception as e:
         print(f"An error occurred: {e}")
 
-# Run real-time prediction loop
+# Run real-time predict-- loop
 def run_real_time_prediction():
     print("Starting real-time network traffic monitoring and prediction...")
     while True:
         send_data_to_api()
-        time.sleep(5)  # Adjust interval as needed
+        time.sleep(5)  # Adjust time interval
 
 if __name__ == "__main__":
     run_real_time_prediction()

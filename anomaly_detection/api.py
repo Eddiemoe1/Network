@@ -20,7 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Counters  tracking predictions
+# Counters to track predictions
 prediction_counters = {"normal": 0, "anomaly": 0}
 
 
@@ -28,7 +28,7 @@ prediction_counters = {"normal": 0, "anomaly": 0}
 async def root():
     return {"message": "Welcome to the Balanced Anomaly Detection API"}
 
-# expected data format
+# the  expected data format
 class NetworkTrafficData(BaseModel):
     packet_count: int
     response_time_ms: float
@@ -41,7 +41,7 @@ class NetworkTrafficData(BaseModel):
 async def predict(data: NetworkTrafficData):
     global prediction_counters
 
-    # Prepare data 
+    # Prepare data to be sent
     input_data = pd.DataFrame([{
         'Packet Count': data.packet_count,
         'Response Time (ms)': data.response_time_ms,
@@ -61,7 +61,7 @@ async def predict(data: NetworkTrafficData):
 
     prediction_counters[prediction_label] += 1
 
-    # Return prediction result
+    # Return predict result
     return {
         "prediction": prediction_label,
         "normal_count": prediction_counters["normal"],
